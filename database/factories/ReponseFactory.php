@@ -2,22 +2,21 @@
 
 namespace Database\Factories;
 
+use App\Models\Evaluation;
+use App\Models\Question;
+use App\Models\Reponse;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Reponse>
- */
 class ReponseFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Reponse::class;
+
+    public function definition()
     {
         return [
-            //
+            'contenu' => $this->faker->sentence,
+            'evaluation_id' => Evaluation::factory(),
+            'question_id' => Question::factory(),
         ];
     }
 }

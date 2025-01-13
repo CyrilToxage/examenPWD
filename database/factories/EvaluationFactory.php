@@ -2,22 +2,18 @@
 
 namespace Database\Factories;
 
+use App\Models\Evaluation;
+use App\Models\Formulaire;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Evaluation>
- */
 class EvaluationFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Evaluation::class;
+
+    public function definition()
     {
         return [
-            //
+            'formulaire_id' => Formulaire::factory(),
         ];
     }
 }
