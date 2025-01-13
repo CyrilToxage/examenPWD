@@ -2,22 +2,43 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Module;
+use App\Models\Formulaire;
+use App\Models\Question;
+use App\Models\Evaluation;
+use App\Models\Reponse;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
-    public function run(): void
+    public function run()
     {
-        // User::factory(10)->create();
+        // Créer 5 administrateurs
+        User::factory()->count(5)->state(['role' => 'admin'])->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // Créer 10 utilisateurs
+        User::factory()->count(10)->create();
+
+        // Créer 5 modules avec des formulaires, questions, évaluations et réponses
+        Module::factory()
+            ->count(5)
+            ->has(
+                Formulaire::factory()
+                    ->count(3)
+                    ->has(
+                        Question::factory()
+                            ->count(5)
+                    )
+                    ->has(
+                        Evaluation::factory()
+                            ->count(2)
+                            ->has(
+                                Reponse::factory()
+                                    ->count(5)
+                            )
+                    )
+            )
+            ->create();
     }
 }
