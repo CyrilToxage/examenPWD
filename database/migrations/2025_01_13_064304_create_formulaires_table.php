@@ -10,6 +10,8 @@ class CreateFormulairesTable extends Migration
     {
         Schema::create('formulaires', function (Blueprint $table) {
             $table->id();
+            $table->string('nom');
+            $table->integer('version');
             $table->date('date_creation');
             $table->foreignId('module_id')->constrained('modules')->onDelete('cascade');
             $table->timestamps();
