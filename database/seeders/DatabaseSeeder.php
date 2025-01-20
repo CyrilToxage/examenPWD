@@ -9,11 +9,17 @@ use App\Models\Formulaire;
 use App\Models\Question;
 use App\Models\Evaluation;
 use App\Models\Reponse;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
     public function run()
     {
+        User::create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'password' => Hash::make('password'), // Vous pouvez personnaliser le mot de passe
+        ]);
         // Créer 5 administrateurs
         User::factory()->count(5)->state(['role' => 'admin'])->create();
 
