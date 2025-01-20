@@ -9,6 +9,8 @@ class Formulaire extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'nom',
+        'version',
         'date_creation',
         'module_id'
     ];
